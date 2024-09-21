@@ -68,7 +68,7 @@ def fetch(account_line):
     params = dict(param.split('=') for param in tg_web_data.split('&'))
 
     user_data = json.loads(unquote(params['user']))
-    data = params['data']
+    query_id = params['query_id']
     auth_date = int(params['auth_date'])
     hash_ = params['hash']
 
@@ -81,8 +81,8 @@ def fetch(account_line):
             "webAppData": {
                 "auth_date": auth_date,
                 "hash": hash_,
-                "data": data,
-                "checkDataString": f"auth_date={auth_date}\ndata={data}\nuser={unquote(params['user'])}",
+                "query_id": query_id,
+                "checkDataString": f"auth_date={auth_date}\nquery_id={query_id}\nuser={unquote(params['user'])}",
                 "user": {
                     "id": user_data["id"],
                     "allows_write_to_pm": user_data.get("allows_write_to_pm", False),
